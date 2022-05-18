@@ -19,7 +19,7 @@ export const QUOTES: Quotation[] = [
   {
     author: 'Stanisław Lem',
     sentence: 'Bądź dobrej myśli, bo po co być złej.',
-    votes: null,
+    votes: 2,
   },
   {
     author: 'Tove Jansson',

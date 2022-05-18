@@ -7,10 +7,10 @@
 
 <div class="container q-container">
   <!--Dodawanie cytatu-->
-  <button class="btn-floating teal add-button">
+  <button class="btn-floating teal add-button" (click)="onSwitchForm()">
     <i class="material-icons">add</i>
   </button>
-  <div class="row">
+  <div class="row edit-row" [class.drawer]="showForm"> <!-- property Class bindowanie klasy -->
     <div class="input-field col s4">
       <input type="text" placeholder="Autor" />
     </div>
@@ -28,36 +28,22 @@
     <div class="col s8">
       <div class="row">
         <div class="col s12">
-          <div class="card teal accent-4 hoverable">
+          <div class="card teal hoverable"
+          *ngFor="let quotation of quotes; let odd = odd"
+          [ngClass]="odd? 'accent-4' : 'accent-5'"> <!-- Czy jest parzysty i dołączanie koloru, odd pobranie nieparzystego indeksu; !Należy usunąć klasę accent-4, ponieważ teraz będzie dodawana dynamicznie przez ngClass -->
+             <!-- ngClass dyrektywa pozwalająca dodać klasę pod pewnym warunkiem -->
             <div class="card-content white-text">
               <span class="card-title">
-                Jeśli nie chcesz mojej zguby, krrrokodyla daj mi luby.
+                {{ quotation.sentence}} <!-- wyświetlenie cytatów -->
               </span>
-              Aleksander Fredro
+              {{ quotation.author}} <!-- użycie interpolacji -->
             </div>
             <div class="card-action right-align">
-              <span class="badge grey darken-2 left white-text">7</span>
+              <span class="badge grey darken-2 left white-text">{{ quotation.votes}}</span>
               <button class="btn blue mr-5">
                 <i class="material-icons">exposure_plus_1</i>
               </button>
               <button class="btn brown">
-                <i class="material-icons">exposure_neg_1</i>
-              </button>
-            </div>
-          </div>
-          <div class="card teal accent-5 hoverable">
-            <div class="card-content white-text">
-              <span class="card-title">
-                Jeśli nie chcesz mojej zguby, krrrokodyla daj mi luby.
-              </span>
-              Aleksander Fredro
-            </div>
-            <div class="card-action right-align">
-              <span class="badge grey darken-2 left white-text">7</span>
-              <button class="btn blue mr-5">
-                <i class="material-icons">exposure_plus_1</i>
-              </button>
-              <button class="btn red">
                 <i class="material-icons">exposure_neg_1</i>
               </button>
             </div>
